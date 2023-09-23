@@ -1,0 +1,5 @@
+build*
+.idea
+cmake-build-debug
+.lgt_tmp
+logtalk_tester_logs
