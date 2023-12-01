@@ -16,8 +16,8 @@ metadata_predicate(readme/2).
 :- public([name/1]).
 
 name(Name) :-
-  self(Self),
-  functor(Self, Name, _).
+  ::'#ident'(Ident),
+  functor(Ident, Name, _).
 
 :- end_category.
 

@@ -13,16 +13,23 @@ merge_options([implements(Implements)|Rest], [implements(Implements_)|Rest_]) :-
 merge_options([Option|Rest], [Option|Rest]).
 merge_options([], []).
 
+rename_identifier(Identifier, Identifier_) :-
+  Identifier =.. [_|T],
+  gensym::gensym('pgpm__package__', PrefixedIdent),
+  Identifier_ =.. [PrefixedIdent|T].
+
 term_expansion((:- Package), [(:- Object),
-                              (:- public('#directory'/1)), ('#directory'(Dir)),
-                              (:- public('#basename'/1)), ('#basename'(Basename)),
-                              (:- public('#source'/1)), ('#source'(Source))
+                              ('#directory'(Dir)),
+                              ('#basename'(Basename)),
+                              ('#source'(Source)),
+                              ('#ident'(Ident))
                               ]) :-
   Package =.. [package, Ident|Options],
   (list::memberchk(imports(_), Options) -> Options1 = Options ; Options1 = [imports([extended_relations, standard_inferences])|Options]),
   (list::memberchk(implements(_), Options1) -> Options2 = Options ; Options2 = [implements([package, requires, versioned])|Options1]),
   merge_options(Options2, Options_),
-  Object =.. [object, Ident|Options_],
+  rename_identifier(Ident, PrefixedIdent),
+  Object =.. [object, PrefixedIdent|Options_],
   logtalk_load_context(directory, Dir),
   logtalk_load_context(basename, Basename),
   logtalk_load_context(source, Source) .

@@ -7,6 +7,7 @@
 	    json(loader),
 	    coroutining(loader),
 	    hook_flows(loader),
+	    gensym(loader),
 	    'pgpm/loader'
 	], [
 	])

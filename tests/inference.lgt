@@ -29,20 +29,23 @@ cover(c_compiler_requirement_inference).
 cover(meta_json_inferences).
 
 test(makefile_package_requires_make) :-
-  MakeGoal = makefile_package::requires(make),
+  current_object(O), implements_protocol(O, package), O::'#ident'(makefile_package),
+  MakeGoal = O::requires(make),
   ::assertion(MakeGoal),
   % and nothing else
-  ::assertion((makefile_package::requires(R), \+ (R \= make))).
+  ::assertion((O::requires(R), \+ (R \= make))).
 
 test(makefile_c_package_requires_make_and_c_compiler) :-
-  MakeGoal = makefile_c_package::requires(make),
-  CompilerGoal = makefile_c_package::requires(c_compiler),
+  current_object(O), implements_protocol(O, package), O::'#ident'(makefile_c_package),
+  MakeGoal = O::requires(make),
+  CompilerGoal = O::requires(c_compiler),
   ::assertion((MakeGoal, CompilerGoal)).
 
 test(meta_json_inferences) :-
-  ::assertion(pgxn_package::summary("Unit testing for PostgreSQL")),
-  ::assertion(pgxn_package::description(_)),
-  ::assertion(pgxn_package::tagged(_)).
+  current_object(O), implements_protocol(O, package), O::'#ident'(pgxn_package),
+  ::assertion(O::summary("Unit testing for PostgreSQL")),
+  ::assertion(O::description(_)),
+  ::assertion(O::tagged(_)).
 
 
 :- end_object.
