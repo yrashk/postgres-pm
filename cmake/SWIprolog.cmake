@@ -1,5 +1,5 @@
 if(NOT DEFINED SWIPL)
-    CPMAddPackage(NAME swiprolog GITHUB_REPOSITORY SWI-Prolog/swipl-devel VERSION 9.1.16 GIT_TAG V9.1.16
+    CPMAddPackage(NAME swiprolog GITHUB_REPOSITORY SWI-Prolog/swipl-devel VERSION 9.1.20 GIT_TAG V9.1.20
             DOWNLOAD_ONLY YES
             GIT_SUBMODULES packages/http packages/ssl packages/clib packages/sgml packages/zlib packages/readline
                            packages/cpp packages/utf8proc)

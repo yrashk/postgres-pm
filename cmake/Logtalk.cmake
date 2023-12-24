@@ -1,4 +1,4 @@
-CPMAddPackage(NAME Logtalk GITHUB_REPOSITORY LogtalkDotOrg/logtalk3 VERSION 3.70.0 GIT_TAG lgt3700stable DOWNLOAD_ONLY YES)
+CPMAddPackage(NAME Logtalk GITHUB_REPOSITORY LogtalkDotOrg/logtalk3 VERSION 3.72.0 GIT_TAG lgt3720stable DOWNLOAD_ONLY YES)
 
 if(Logtalk_ADDED AND swiprolog_ADDED)
     #set(ENV{LOGTALKUSER} ${CMAKE_CURRENT_BINARY_DIR}/logtalk)
